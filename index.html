@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quiz Game</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      h1 {
+        font-size: 30px;
+        margin-bottom: 50px;
+        color: #eb2b09;
+        background-color: #0ceae7;
+        border-radius: 10px;
+        padding: 15px;
+        margin-left: 200px;
+        margin-right: 200px;
+      }
+      p {
+        font-size: 50px;
+        margin-bottom: auto;
+      }
+      button {
+        font-size: 25px;
+        padding: 15px;
+        margin-top: 30px;
+        background-color: #0748d4;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #eb2b09;
+      }
+      div {
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #6dc1ce;
+        margin-left: 200px;
+        margin-right: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Quiz Game</h1>
+    <div>
+      <p id="question"></p>
+      <button id="trueButton">True</button>
+      <button id="falseButton">False</button>
+      <p>Score: <span id="score">0</span></p>
+    </div>
+    <script>
+      const questions = [
+        {
+          question: "Is VIT Bhopal good for CSE?",
+          answer: true,
+        },
+        {
+          question: "VIT has 5 braches ?",
+          answer: false,
+        },
+        {
+          question: "The capital of inida is delhi?",
+          answer: true,
+        },
+        {
+          question: "The sun revolves around the Earth.",
+          answer: false,
+        },
+      ];
+
+      let currentQuestion = 0;
+      let userScore = 0;
+
+      const questionElement = document.getElementById("question");
+      const trueButton = document.getElementById("trueButton");
+      const falseButton = document.getElementById("falseButton");
+      const scoreElement = document.getElementById("score");
+
+      trueButton.addEventListener("click", () => {
+        checkAnswer(true);
+      });
+
+      falseButton.addEventListener("click", () => {
+        checkAnswer(false);
+      });
+
+      function checkAnswer(userAnswer) {
+        if (userAnswer === questions[currentQuestion].answer) {
+          userScore++;
+        }
+        currentQuestion++;
+        if (currentQuestion === questions.length) {
+          questionElement.textContent = "Quiz complete! Final score:";
+          trueButton.disabled = true;
+          falseButton.disabled = true;
+        } else {
+          questionElement.textContent = questions[currentQuestion].question;
+          scoreElement.textContent = userScore;
+        }
+      }
+      questionElement.textContent = questions[currentQuestion].question;
+      scoreElement.textContent = userScore;
+    </script>
+  </body>
+</html>
